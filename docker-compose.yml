@@ -1,0 +1,16 @@
+version: '3'
+services:
+  fib-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8082:8080
+    container_name: fib-worker
+    volumes:
+      - .:/app/
+    depends_on:
+      - redis-server
+  redis-server:
+    image: redis
+    hostname: 'redis'

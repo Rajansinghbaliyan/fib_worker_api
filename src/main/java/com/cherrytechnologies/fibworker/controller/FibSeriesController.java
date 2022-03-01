@@ -1,5 +1,6 @@
 package com.cherrytechnologies.fibworker.controller;
 
+import com.cherrytechnologies.fibworker.Exception.NotFoundException;
 import com.cherrytechnologies.fibworker.domain.FibSeries;
 import com.cherrytechnologies.fibworker.service.FibSeriesService;
 import lombok.RequiredArgsConstructor;
@@ -35,13 +36,6 @@ public class FibSeriesController {
         log.info("GET /redis-worker/" + id);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(
-                        seriesService.getByValue(id)
-                                .orElse(seriesService
-                                        .saveNumber(
-                                                FibSeries.builder()
-                                                        .id(id)
-                                                        .build()
-                                        )));
+                .body(seriesService.getByValue(id).orElseThrow(()-> new NotFoundException(id)));
     }
 }

@@ -15,7 +15,7 @@ public class FibSeriesServiceImpl implements FibSeriesService{
 
     @Override
     public FibSeries getByValue(int number) {
-        return repository.getById(number);
+        return repository.findById(number).get();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class FibSeriesServiceImpl implements FibSeriesService{
 
     @Override
     public FibSeries updateNumber(FibSeries fibSeries) {
-        FibSeries retrievedFibSeries = repository.getById(fibSeries.getNumber());
+        FibSeries retrievedFibSeries = repository.findById(fibSeries.getId()).get();
         retrievedFibSeries.setValue(00);
         return repository.save(retrievedFibSeries);
     }

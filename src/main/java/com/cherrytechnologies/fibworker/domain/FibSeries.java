@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
-@RedisHash(value = "fib_series")
+@RedisHash(value = "FibSeries")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class FibSeries {
-    private Integer number;
+    private Integer id;
     private Integer value;
 }
